@@ -1,8 +1,9 @@
-package ru.netology.sql;
+package ru.netology.sql.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ru.netology.sql.repository.SqlRepository;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -11,12 +12,12 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ProductService productService;
+    private SqlRepository sqlRepository;
 
     @GetMapping("/products/fetch-product")
     @ResponseBody
     public List<String> fetchProducts(@RequestParam String name) throws SQLException {
-        return productService.fetchProductsByName(name);
+        return sqlRepository.fetchProductsByName(name);
     }
 
     @GetMapping("/")
